@@ -1,0 +1,12 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+#container {
+    margin-top: 50px;
+}
+
+label, input {
+    margin-bottom: 10px;
+}

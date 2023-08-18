@@ -1,0 +1,68 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POST Request Sender</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+</head>
+<body>
+    <div id="container">
+        <h1>POST Request Sender</h1>
+        <label for="serverIP">Server IP:</label>
+        <input type="text" id="serverIP" placeholder="Enter Server IP">
+
+        <br />
+        <br />
+
+        <label for="jsonData">JSON Data:</label>
+        <input type="text" id="jsonData" placeholder="Enter JSON Data">
+
+        <br />
+        <br />
+        
+        <button id="sendButton">Send POST Request</button>
+        <p id="responseMessage"></p>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html> -->
+
+<obj><str name="Node ID" val="WE-VN04-00"/>
+<str name="Node Location" val="{'Latitude': 17.445825, 'Longitude': 78.349215}"/>
+<str name="Device Model" val="{'Controller': 'Python application running in dev container', 'Device': 'Hobolink Rx3001 Weather Station, id=1.0', 'Sensors': ['(Timestamp = Hobo data logger, id=1.0)', '(Solar Radiation = S-LIB-M003, id=1.0)', '(Temperature = S-TMB-M002, id=2.0)', '(Relative Humidity = S-THB-M002, id=1.0)', '(Wind Direction = S-WCA-M003, id=1.0)', '(Wind Speed = S-WCA-M003, id=1.0)', '(Gust Speed = S-WCA-M003, id=1.0)', '(Dew Point = S-WCA-M003, id=1.0)', '(Battery Power = Battery DC Voltage, id=1.0)', '(Rain = S-RGF-M002, id=1.0)', '(Pressure = S-BPB-CM50, id=1.0)']}"/>
+<str name="Version History" val="[{'ver': 'V2.0.0', 'dt_start': '08-12-2020 00:00:00', 'dt_end': '14-12-9999 10:00:00'}]"/>
+<str name="Data String Parameters" val="['Timestamp', 'Solar Radiation', 'Temperature', 'Relative Humidity', 'Wind Direction', 'Wind Speed', 'Gust Speed', 'Dew Point', 'Battery DC Voltage', 'Rain', 'Pressure']"/>
+<str name="Parameters Description" val="Data Description, [datatype], [Units], [Resolution], [Accuracy]"/>
+<str name="Timestamp" val="The number of seconds that have elapsed since Thursday, 1970 Jan 1 00:00:00 UTC, [int], [s], [60 s], [n/a]"/>
+<str name="Solar Radiation" val="The instantaneous value of Solar Radiation, [float], [W/m2], [1.25 W/m2], [&#0177; 10 W/m2 or &#0177; 5% whichever is greater in sunlight]"/>
+<str name="Temperature" val="The instantaneous value of Temperature, [float], [&#0176;C], [0.02 &#0176;C at 25 &#0176;C], [&#0177; 0.21 &#0176;C from 0 &#0176;C to 50 &#0176;C]"/>
+<str name="Relative Humidity" val="The instantaneous value of Relative Humidity, [float], [%RH], [0.1 %RH], [&#0177; 2.5% from 10% to 90% RH]"/>
+<str name="Wind Direction" val="The instantaneous value of Wind direction, [float], [&#0952;], [1.4 &#0176;], [&#0177; 5 &#0176;]"/>
+<str name="Wind Speed" val="The instantaneous value of Wind speed, [float], [m/s], [0.19 m/s (0.42 mph)], [&#0177; 0.5 m/s, &#0177; 3% 17 to 30 m/s, &#0177; 4% 30 to 44 m/s]"/>
+<str name="Gust Speed" val="The instantaneous value of Gust speed, [float], [m/s], [0.19 m/s (0.42 mph)], [&#0177; 0.5 m/s, &#0177; 3% 17 to 30 m/s, &#0177; 4% 30 to 44 m/s]"/>
+<str name="Dew Point" val="Value of each day's dew point temperature, [float], [&#0176;C], [0.02 &#0176;C at 25 &#0176;C], [&#0177; 0.21 &#0176;C from 0 &#0176;C to 50 &#0176;C]"/>
+<str name="Battery DC Voltage" val="The instantaneous value of Battery Voltage Value, [float], [v], [n/a], [n/a]"/>
+<str name="Rain" val="Measurement of rain level,  [float], [mm/hour ], [0.2 mm], [&#0177; 5.0 mm]"/>
+<str name="Pressure" val="The instantaneous value of atmospheric pressure, [float], [mbar], [0.1 mbar], [&#0177; 5 mbar]"/>
+</obj>
+
+
+<obj><str name="Node ID" val="SR-AQ-KH95-00"/>
+<str name="Node Location" val="{'Latitude': 17.44511, 'Longitude': 78.34974}"/>
+<str name="Device Model" val="{'Controller': 'ESP 32', 'Device': 'AQ node with CO2, Temperature and Relative Humidity, id=1.0', 'Sensors': ['(Timestamp)', '(CO2 = Telaire T6713, id=1.0)', '(Temperature = SHT21, id=1.0)', '(Relative Humidity = SHT21, id=1.0)']}"/>
+<str name="Version History" val="[{'ver': 'V1.0.05', 'dt_start': '29-12-2020 00-00-00', 'dt_end': '31-12-9999 23-59-59'}]"/>
+<str name="Data String Parameters" val="['Timestamp', 'CO2', 'Temperature', 'Relative Humidity']"/>
+<str name="Parameters Description" val="Data Description, [datatype], [Units], [Resolution], [Accuracy]"/>
+<str name="Timestamp" val="The number of seconds that have elapsed since Thursday, 1970 Jan 1 00:00:00 UTC, [int], [s], [60 s], [n/a]"/>
+<str name="CO2" val="The instantaneous value of CO2, [float], [ppm], [1 ppm], [&#0177; 30 ppm]"/>
+<str name="Temperature" val="The instantaneous value of Temperature, [float], [&#0176;C ], [0.02 &#0176;C at 25 &#0176;C], [&#0177; 0.21 &#0176;C from 0&#0176;C to 50 &#0176;C]"/>
+<str name="Relative Humidity" val="The instantaneous value of Relative Humidity, [float], [%RH], [0.1 %RH], [&#0177; 2.5% from 10% to 90% RH]"/>
+</obj>
+
+ count the number of "\n" till it reaches 5 
+ after that get the data from 5th "\n" and 6th "\n"
+  
