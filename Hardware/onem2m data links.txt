@@ -1,0 +1,38 @@
+AE-AQ
+    Air Quality Monitoring
+        http://onem2m.iiit.ac.in/~/in-cse/in-name/AE-AQ/AQ-VN90-00/Descriptor/la
+        http://onem2m.iiit.ac.in/~/in-cse/in-name/AE-AQ/AQ-VN90-00/Data/la
+
+AE-EM
+    !!NEED TO ASK
+
+AE-SL 
+    Solar Monitoring
+        http://onem2m.iiit.ac.in/~/in-cse/in-name/AE-SL/SL-VN95-00/Descriptor/la
+        http://onem2m.iiit.ac.in/~/in-cse/in-name/AE-SL/SL-VN95-00/Data/la
+AE-SR 
+    SR-AC 
+    SR-AQ 
+    SR-EM
+    SR-OC
+AE-WE 
+    Weather Monitoring
+        http://onem2m.iiit.ac.in/~/in-cse/in-name/AE-WE/WE-VN04-00/Descriptor/la
+        http://onem2m.iiit.ac.in/~/in-cse/in-name/AE-WE/WE-VN04-00/Data/la
+AE-WM 
+    WM-WD
+        Water Quality
+            http://onem2m.iiit.ac.in/~/in-cse/in-name/AE-WM/WM-WD/WM-WD-VN00-00/Descriptor/la
+            http://onem2m.iiit.ac.in/~/in-cse/in-name/AE-WM/WM-WD/WM-WD-VN00-00/Data/la
+    WM-WF
+        Water Quantity
+            VN01-01
+            !!NEED TO ASK
+AE-WN 
+    Wi-SUN
+        http://onem2m.iiit.ac.in/~/in-cse/in-name/AE-WN/WN-L001-03/Descriptor/la
+        http://onem2m.iiit.ac.in/~/in-cse/in-name/AE-WN/WN-L001-03/Data/la
+AE-CM
+    Crowd Monitoring
+        http://onem2m.iiit.ac.in/~/in-cse/in-name/AE-CM/CM-VN90-00/Descriptor/la
+        http://onem2m.iiit.ac.in/~/in-cse/in-name/AE-CM/CM-VN90-00/Data/la
