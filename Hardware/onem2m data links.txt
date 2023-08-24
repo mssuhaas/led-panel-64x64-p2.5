@@ -36,3 +36,62 @@ AE-CM
     Crowd Monitoring
         http://onem2m.iiit.ac.in/~/in-cse/in-name/AE-CM/CM-VN90-00/Descriptor/la
         http://onem2m.iiit.ac.in/~/in-cse/in-name/AE-CM/CM-VN90-00/Data/la
+
+
+
+AQ-KH00-00
+
+
+
+
+
+
+
+
+
+
+#include <Arduino.h>
+#include "WiFi.h"
+#include "ESPAsyncWebServer.h"
+#include <string.h>
+#include <ArduinoJson.h>
+#include <PxMatrix.h>
+#include <HTTPClient.h>
+
+String URL = "http://onem2m.iiit.ac.in/~/in-cse/in-name";
+
+String AQ = "/AE-AQ/AQ-KH00-00";
+String SL = "/AE-SL/SL-VN03-00";
+String srAC = "/AE-SR/SR-AC/SR-AC-KH00-00";
+String srAQ = "/AE-SR/SR-AQ/SR-AQ-KH95-03";
+String srEM = "/AE-SR/SR-EM/SR-EM-KH04-00";
+String WE = "/AE-WE/WE-VN04-00";
+String WD = "/AE-WM/WM-WD/WM-WD-VN01-01";
+String WF = "/AE-WM/WM-WF/WM-WF-VN01-00";
+String WN = "/WE/WN/WN-L001-03"
+
+String data_AQ[] = "";
+
+String data_AQ = "[1692599419, 8.70, 17.70, 29.08, 67.41]" ;
+// ['Timestamp', 'PM2.5', 'PM10', 'Temperature', 'Relative Humidity', 'CO Concentration', 'NO2 Concentration', 'NH3 Concentration', 'AQI', 'AQL', 'AQI-MP', 'Data Interval']
+// 1,2,3,4,5,6,7,8
+String data_SL = "[1692599580, 198.4, 310614.9, 25878.2, 411.0, 405.8, 411.3, 50.06, 2.0000, 238.3, 36.0, 8578.8, 236.3, 36.3, 8577.6, 234.5, 36.1, 8465.4, 752.4, 5.8, 4363.9, 768.9, 5.9, 4536.5, 752.3, 5.9, 4438.5, 747.2, 2.8, 2093.2, 751.7, 6.1, 4585.3, 759.1, 3.0, 2277.3]" ;
+// ['Timestamp', 'Eac_today', 'Eac_total', 'ActivePower', 'Voltage_RS', 'Voltage_ST', 'Voltage_TR', 'Frequency', 'Power Factor', 'Voltage1', 'Current1', 'Power1', 'Voltage2', 'Current2', 'Power2', 'Voltage3', 'Current3', 'Power3', 'PV1Voltage', 'PV1Current', 'PV1Power', 'PV2Voltage', 'PV2Current', 'PV2Power', 'PV3Voltage', 'PV3Current', 'PV3Power', 'PV4Voltage', 'PV4Current', 'PV4Power', 'PV5Voltage', 'PV5Current', 'PV5Power', 'PV6Voltage', 'PV6Current', 'PV6Power']
+// 
+String data_srAC = "[1692599520, 22.30, 22.00, 0, 0, 1, 1, 2, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0]" ;
+String data_srAQ = "" ;
+String data_srEM = "[1692599700, 409289312.00, 10956.48, 22.22]" ;
+String data_WE = "[1692599100, 431.88, 29.19, 68.90, 280.78, 2.66, 5.33, 22.92, 4.34, 0.00, 939.15]" ;
+String data_WD = "[1692595072, 21.81, 0.13 , 52.50, 55.94, 0.00]" ;
+String data_WF = "[1692599798, 0.0000, 0.0000, 0.00, 0.000000]" ;
+String data_WN = "[1692599674, 155, '-55', 50, 'FD12:3456::5232:5FFF:FE42:61C6', -55, 128, 196, 0, 758, 'FD12:3456::5232:5FFF:FE42:8B7B', 36]" ;
+
+void setup() {
+  // put your setup code here, to run once:
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+}
