@@ -76,3 +76,25 @@ def get_WD_data():
 
 if __name__ == "__main__":
   app.run("0.0.0.0",debug=True,port=80)
+
+
+
+  # def get_SL_data():
+#     url = base_url + SL + "Data/la"
+#     payload = ""
+#     response = requests.get("GET",url=url,headers=headers,data=payload)
+#     rec = json.loads(response.text)
+#     data_list = eval(rec["m2m:cin"]["con"])
+#     print(data_list[0:])
+#     params = []
+#     values = []
+#     units = []
+#     ret_val = 
+#     final_ret = {
+#         "count" : len(params),
+#         "params": params,
+#         "values": values,
+#         "units": units,
+#         "string": ret_val
+#     }
+#     return final_ret

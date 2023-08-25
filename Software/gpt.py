@@ -5,7 +5,7 @@ from threading import Thread
 import json
 
 app = FastAPI()
-
+ 
 data = {"AQ":None,"SL":None,"srAC": None,"srAQ": None,"srEM": None,"WE": None,"WD": None,"WF": None,"WN": None}
 
 # _URL = "https://jsonplaceholder.typicode.com/todos/1"
@@ -42,6 +42,7 @@ def get_aq_data():
     values = [data_list[2],data_list[4],data_list[5],data_list[8],data_list[9]]
     ret_val = "PM2.5 : " + str(data_list[2]) + ", PM10 : " + str(data_list[4]) +  ", Temperature : " + str(data_list[5]) + ", Relative Humidity : " + str(data_list[8]) +  ", AQI : " + str(data_list[9])
     units = ["ug/m3","ug/m3","C","%Rh"," "]
+    print(ret_val)
     final_ret = {
        "count" : len(params),
       "params" : params,
@@ -62,6 +63,7 @@ def get_wd_data():
     params = ["Temp","TDSV","uTDS","cTDS"]
     values = [data_list[1],data_list[2],data_list[3],data_list[4]]
     ret_val = "Temperature : " + str(data_list[1]) + ", TDS Voltage : " + str(data_list[2]) + ", Uncompensated TDS : " + str(data_list[3]) + ", Compensated TDS : " + str(data_list[4])
+    print(ret_val)
     units = ["C"," V","ppm","ppm"]
     final_ret = {
        "count" : len(params),
@@ -85,6 +87,7 @@ def get_srEM_data():
     values = [data_list[1],data_list[2],data_list[3]]
     units = ["kWh","kW","A"]
     ret_val = "Energy : " + str(data_list[1])+", Power : " + str(data_list[2])+", Current : " + str(data_list[3])
+    print(ret_val)
     final_ret = {
     "count" : len(params),
     "params" : params,
@@ -94,18 +97,19 @@ def get_srEM_data():
     }
     return final_ret
 
-
 def get_WN_data():
-    url = base_url + + "Data/la"
+    url = base_url + WN + "/Data/la"
     payload = ""
-    response = requests.get("GET",url=url,headers=headers,data=payload)
+    response = requests.request("GET",url,headers=headers,data=payload)
     rec = json.loads(response.text)
     data_list = eval(rec["m2m:cin"]["con"])
     print(data_list[0:])
-    params = 
-    values = 
-    units = 
-    ret_val = 
+# ['Timestamp', 'Node_Status', 'Light_Status', 'Rsl_Out', 'Latency', 'Data_Rate', 'Mac_Address', 'Packet_Size', 'Rsl_In', 'Etx', 'Rpl_Rank', 'Mac_tx_failed_count', 'Mac_tx_count', 'Neighbour']
+    params = ["stat","lamp","rsl","lat","drate"]
+    values = [data_list[1],data_list[2],data_list[3],data_list[4],data_list[5]]
+    units = [" "," ","dBm","sec","kbps"]
+    ret_val = "Node Status : " +str(data_list[1]) +", Lamp Status : " + str(data_list[2]) +", RSL : " + str(data_list[3]) +", Latency : " + str(data_list[4]) +", Data Rate : " + str(data_list[5])
+    print(ret_val)
     final_ret = {
         "count" : len(params),
         "params": params,
@@ -114,40 +118,19 @@ def get_WN_data():
         "string": ret_val
     }
     return final_ret
-
-
-def get_SL_data():
-    url = base_url + + "Data/la"
-    payload = ""
-    response = requests.get("GET",url=url,headers=headers,data=payload)
-    rec = json.loads(response.text)
-    data_list = eval(rec["m2m:cin"]["con"])
-    print(data_list[0:])
-    params = 
-    values = 
-    units = 
-    ret_val = 
-    final_ret = {
-        "count" : len(params),
-        "params": params,
-        "values": values,
-        "units": units,
-        "string": ret_val
-    }
-    return final_ret
-
 
 def get_WF_data():
-    url = base_url + + "Data/la"
+    url = base_url + WF + "/Data/la"
     payload = ""
-    response = requests.get("GET",url=url,headers=headers,data=payload)
+    response = requests.request("GET",url=url,headers=headers,data=payload)
     rec = json.loads(response.text)
     data_list = eval(rec["m2m:cin"]["con"])
     print(data_list[0:])
-    params = 
-    values = 
-    units = 
-    ret_val = 
+    params = ["Rate","tFlow"]
+    values = [data_list[1],data_list[2]]
+    units = ["Kl/m","Kl"]
+    ret_val = "Flowrate : " + str(data_list[1]) + ", Total Flow : " + str(data_list[2]) 
+    print(ret_val)
     final_ret = {
         "count" : len(params),
         "params": params,
@@ -156,6 +139,7 @@ def get_WF_data():
         "string": ret_val
     }
     return final_ret
+
 
 
 def fetch_data():
@@ -165,14 +149,14 @@ def fetch_data():
             data["AQ"] = get_aq_data()
             data["WD"] = get_wd_data()
             data["srEM"] = get_srEM_data()
-            # data["WN"] = get_WN_data()
+            data["WN"] = get_WN_data()
             # data["SL"] = get_SL_data()
-            # data["WF"] = get_WF_data()
+            data["WF"] = get_WF_data()
             
             print("Data fetched successfully!")
         except Exception as e:
             print(f"An error occurred: {e}")
-        time.sleep(60)
+        time.sleep(200)
 
 data_fetch_thread = Thread(target=fetch_data)
 data_fetch_thread.daemon = True
@@ -194,6 +178,13 @@ def r_wd():
 def r_srEM():
     return data["srEM"]
 
+@app.get('/wn')
+def f_wn():
+    return data["WN"]
+
+@app.get('/wf')
+def f_wf():
+    return data["WF"]
 
 if __name__ == "__main__":
     import uvicorn
