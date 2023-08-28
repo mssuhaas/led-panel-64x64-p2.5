@@ -8,9 +8,11 @@ app = FastAPI()
  
 data = {"AQ":None,"SL":None,"srAC": None,"srAQ": None,"srEM": None,"WE": None,"WD": None,"WF": None,"WN": None}
 
+last_updated = 0
+
 # _URL = "https://jsonplaceholder.typicode.com/todos/1"
 
-base_url = "http://onem2m.iiit.ac.in:443/~/in-cse/in-name/"
+base_url = "https://onem2m.iiit.ac.in:443/~/in-cse/in-name/"
 
 AQ = "AE-AQ/AQ-KN00-00"
 SL = "AE-SL/SL-VN03-00"
@@ -156,6 +158,7 @@ def fetch_data():
             print("Data fetched successfully!")
         except Exception as e:
             print(f"An error occurred: {e}")
+        last_updated = time.ctime(time.time())
         print("Time : ",int(time.time()))
         time.sleep(600)
 
@@ -188,6 +191,11 @@ def f_wf():
 @app.get("/")
 def f_all():
     return data
+
+@app.get("/time")
+def f_time():
+    return last_updated
+
 
 if __name__ == "__main__":
     import uvicorn
