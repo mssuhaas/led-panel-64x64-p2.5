@@ -1,110 +1,107 @@
 #include <Arduino.h>
 
-String sendGET(String node) {
-  String URL = "http://onem2m.iiit.ac.in/~/in-cse/in-name";
-  String node_URL = URL + node;
-  HTTPClient http;
-  http.begin(node_URL);
-  http.addHeader("X-M2M-Origin", "iiith_guest:iiith_guest");
-  http.addHeader("Content-Type", "application/json");
-  int httpCode = http.GET();
-  String payload = "";
-  if (httpCode > 0) {
-    payload = http.getString();
-    Serial.println("Data Recieved!");
-    Serial.println(payload);
-    DeserializationError error = deserializeJson(doc.payload);
-    Serial.println("Data Parsing!");
-    if (error) {
-      Serial.print("deserializeJson() failed: ");
-      Serial.println(error.c_str());
-      return;
-    }
-    Serial.println("========= DATA PARSING START =================");
-    const char *m2m_cin_con = doc["con"];
-    String conv_data = m2m_cin_con;
-    Serial.println("DATA : ");
-    Serial.print(conv_data);
-    Serial.println("========= DATA PARSING SUCCESS ===============");
+int dataCount;
+
+DynamicJsonDocument doc(512);
+
+#define MAX_DATA_SIZE 12
+
+int first = 0;
+String data_params[MAX_DATA_SIZE] = {"PM2.5","PM10","Temp"," rH","AQI"};
+double data_values[MAX_DATA_SIZE] = {8.72,41.39,34.39,30.53,41.39};
+String units[MAX_DATA_SIZE] = {"ug/m3","ug/m3","C","%Rh",""};
+String string_data = "PM2.5 : 8.72, PM10 : 41.39, Temperature : 34.39, Relative Humidity : 30.69, AQI : 41.39";
+
+
+void printData() {
+  Serial.println("Stored Data:");
+  for (int i = 0; i < dataCount; i++) {
+    Serial.print("Parameter: ");
+    Serial.print(data_params[i]);
+    Serial.print("\tValue: ");
+    Serial.print(data_values[i]);
+    Serial.print("\tUnits: ");
+    Serial.println(units[i]);
   }
-  return conv_data;
 }
-// void show_aq(String data_URL){
-//   HttpClient http;
-//   // http://10.2.131.168:5000/aq
-//   http.begin(data_URL);
-//   http.addHeader("Content-Type", "application/json");
-//   int httpCode = http.GET();
+
+void updateData(String jsonString) {
+  // DynamicJsonDocument doc(512);
+  deserializeJson(doc, jsonString);
+
+  dataCount = doc["count"];
+
+  JsonArray paramsArray = doc["params"];
+  JsonArray valuesArray = doc["values"];
+  JsonArray unitsArray = doc["units"];
+  const char *mew = doc["string"];
+  string_data = mew;
+  for (int i = 0; i < dataCount && i < MAX_DATA_SIZE; i++) {
+    data_values[i] = valuesArray[i];
+    data_params[i] = paramsArray[i].as<String>();
+    units[i] = unitsArray[i].as<String>();
+  }
+  printData();
+}
+
+// void sendGET(String vertical) {
+//   Serial.println("IN sendGET");
+//   String url = "https://iiit-api.cringemonkey.tk/" +  vertical;
+//   Serial.println(url);
+//   HTTPClient http;
+//   http.begin(url);
 //   String payload = "";
+//   int httpCode = http.GET();
+//   Serial.print("HTTP : ");
+//   Serial.println(httpCode);
 //   if (httpCode > 0) {
 //     payload = http.getString();
 //     Serial.println("Data Recieved!");
 //     Serial.println(payload);
-//     DeserializationError error = deserializeJson(doc.payload);
-//     Serial.println("Data Parsing!");
-//     if (error) {
-//       Serial.print("deserializeJson() failed: ");
-//       Serial.println(error.c_str());
-//       return;
-//     }
-//     Serial.println("========= DATA PARSING START =================");
-//     const char *m2m_cin_con = doc["string"];
-//     String conv_data = m2m_cin_con;
-//     Serial.println("DATA : ");
-//     Serial.print(conv_data);
-//     Serial.println("========= DATA PARSING SUCCESS ===============");
+//     updateData(payload);
+//   } else {
+//     Serial.println("REQUEST COULD NOT BE SENT!");
 //   }
+//     http.end();
 // }
 
-
-int parseArrayString(const char *inputString, double *array, int maxSize) {
-  int count = 0;
-
-  // Skipping the opening '[' character
-  inputString++;
-
-  // Skip the first element
-  while (*inputString != ',' && *inputString != '\0') {
-    inputString++;
+void sendGET(String vertical) {
+  String url = "https://iiit-api.cringemonkey.tk/" + vertical ;
+  Serial.println("IN sendGET");
+  HTTPClient http;
+  http.begin(url);
+  String payload = "";
+  int httpCode = http.GET();
+  Serial.print("HTTP : ");
+  Serial.println(httpCode);
+  if (httpCode > 0) {
+    payload = http.getString();
+    Serial.println("Data Recieved!");
+    Serial.println(payload);
+    updateData(payload);
+  } else {
+    Serial.println("REQUEST COULD NOT BE SENT!");
   }
-  if (*inputString == ',') {
-    inputString++;
-  }
-
-  while (*inputString != '\0' && count < maxSize) {
-    if (*inputString == ',') {
-      inputString++;
-      continue;
-    }
-
-    if (*inputString == ']') {
-      break;
-    }
-
-    if (*inputString == ' ') {
-      inputString++;
-      continue;
-    }
-
-    if (*inputString == '\0') {
-      break;
-    }
-
-    double num;
-    if (sscanf(inputString, "%lf", &num) == 1) {
-      array[count] = num;
-      count++;
-      while (*inputString != ',' && *inputString != ']' && *inputString != '\0') {
-        inputString++;
-      }
-    }
-    inputString++;
-  }
-
-  return count;
+  http.end();
 }
 
 
+void updateAQ() {
+  sendGET("aq");
+}
 
+void updatesrEM() {
+  sendGET("srEM");
+}
 
+void updateWF() {
+  sendGET("wf");
+}
 
+void updateWN() {
+  sendGET("wn");
+}
+
+void updateWD() {
+  sendGET("wd");
+}

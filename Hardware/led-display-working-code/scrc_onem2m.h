@@ -6,6 +6,8 @@
 #include <PxMatrix.h>
 #include <HTTPClient.h>
 
+#include "data_parser.h"
+
 #define buzzer 0
 
 #define P_LAT 22
@@ -60,13 +62,13 @@ void m_updateData(String paramOne, String paramTwo, double dataOne, double dataT
   display.setTextSize(1);
   display.setTextColor(display.color565(110, 250, 20));
   display.setCursor(1,30);
-  display.printf("%.2lf",dataOne);
+  display.printf("%.1lf",dataOne);
   display.setCursor(34, 30);
-  display.printf("%.2lf",dataTwo);
+  display.printf("%.1lf",dataTwo);
   display.setTextColor(display.color565(255, 255, 255));
   display.setCursor(3,43);
   display.print(unitOne);
-  display.setCursor(37,43);
+  display.setCursor(35,43);
   display.print(unitTwo);
 }
 
@@ -77,14 +79,10 @@ void m_show_text(String textse){
   display.setTextWrap(true);
   display.setTextColor(display.color565(255,255,255));
   display.setTextSize(1);
-  // display.print("  WELCOMES    SRI     CHANDRA BABU NAIDU   GARU");
-  // display.print("CHANDRAYAAN TWO");
   display.print(textse);
   delay(2000);
 }
-// void b_updateData(String scroll_text){
-//   scroll_
-// }
+
 
 void sound_buzzer(uint8_t times, uint8_t delay_time)
 {
