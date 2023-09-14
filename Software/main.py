@@ -12,7 +12,7 @@ last_updated = 0
 
 # _URL = "https://jsonplaceholder.typicode.com/todos/1"
 
-base_url = "https://onem2m.iiit.ac.in:443/~/in-cse/in-name/"
+base_url = "http://onem2m.iiit.ac.in:443/~/in-cse/in-name/"
 
 AQ = "AE-AQ/AQ-KN00-00"
 SL = "AE-SL/SL-VN03-00"
