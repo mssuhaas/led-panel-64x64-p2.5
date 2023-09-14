@@ -244,7 +244,7 @@ void loop() {
     scroll_text(56, 50, string_data, 0, 191, 255);
     b_clearDisplay();
   }
-  if( curr_vertical >= 5){
+  if( curr_vertical >= 5){w
   curr_vertical = 0;
   }
   

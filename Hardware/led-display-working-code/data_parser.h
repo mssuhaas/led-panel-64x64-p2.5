@@ -23,6 +23,8 @@ void printData() {
     Serial.print("\tUnits: ");
     Serial.println(units[i]);
   }
+  Serial.print("String : ");
+  Serial.println(string_data);
 }
 
 void updateData(String jsonString) {
@@ -44,27 +46,6 @@ void updateData(String jsonString) {
   printData();
 }
 
-// void sendGET(String vertical) {
-//   Serial.println("IN sendGET");
-//   String url = "https://iiit-api.cringemonkey.tk/" +  vertical;
-//   Serial.println(url);
-//   HTTPClient http;
-//   http.begin(url);
-//   String payload = "";
-//   int httpCode = http.GET();
-//   Serial.print("HTTP : ");
-//   Serial.println(httpCode);
-//   if (httpCode > 0) {
-//     payload = http.getString();
-//     Serial.println("Data Recieved!");
-//     Serial.println(payload);
-//     updateData(payload);
-//   } else {
-//     Serial.println("REQUEST COULD NOT BE SENT!");
-//   }
-//     http.end();
-// }
-
 void sendGET(String vertical) {
   String url = "https://iiit-api.cringemonkey.tk/" + vertical ;
   Serial.println("IN sendGET");
@@ -85,23 +66,3 @@ void sendGET(String vertical) {
   http.end();
 }
 
-
-void updateAQ() {
-  sendGET("aq");
-}
-
-void updatesrEM() {
-  sendGET("srEM");
-}
-
-void updateWF() {
-  sendGET("wf");
-}
-
-void updateWN() {
-  sendGET("wn");
-}
-
-void updateWD() {
-  sendGET("wd");
-}
