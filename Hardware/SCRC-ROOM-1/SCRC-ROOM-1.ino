@@ -30,6 +30,9 @@ bool wd_status = false;
 const char *ssid = "IIIT-Guest";
 const char *password = "I%GR#*S@!";
 
+// #define WIFI_SSID 
+// #define WIFI_PASSWORD "e5W-eMai@3!20hOct"
+
 // const char *ssid = "Test";
 // const char *password = "123456789";
 
@@ -244,7 +247,7 @@ void loop() {
     scroll_text(56, 50, string_data, 0, 191, 255);
     b_clearDisplay();
   }
-  if( curr_vertical >= 5){w
+  if( curr_vertical >= 5){
   curr_vertical = 0;
   }
   

@@ -5,4 +5,4 @@ The display is controlled by a ESP32 dev module. The initial goal for this displ
 
 The ESP32 dev module is connected to the led display using HUB75E and buzzer when there is a notification.
 
-(TODO)[add the connections to the HUB75E from ESP32 in form of a table]
+TODO: add the connections to the HUB75E from ESP32 in form of a table

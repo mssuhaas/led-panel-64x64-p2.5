@@ -47,7 +47,7 @@ void updateData(String jsonString) {
 }
 
 void sendGET(String vertical) {
-  String url = "https://iiit-api.cringemonkey.tk/" + vertical ;
+  String url = "https://iiit-api.suryasuhaas.in/" + vertical ;
   Serial.println("IN sendGET");
   HTTPClient http;
   http.begin(url);
