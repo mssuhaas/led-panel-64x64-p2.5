@@ -8,6 +8,7 @@
 
 #include "data_parser.h"
 
+
 #define buzzer 0
 
 #define P_LAT 22

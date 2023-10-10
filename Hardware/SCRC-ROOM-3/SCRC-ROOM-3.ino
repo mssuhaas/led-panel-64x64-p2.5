@@ -2,6 +2,7 @@
 
         Created By: Modadugu Surya Suhaas
         August 2023
+        For SCRC ROOM 3
 
 ******************************************************************/
 // Wi-Fi
@@ -24,17 +25,12 @@ int curr_vertical = 0;
 bool wd_status = false;
 
 // WiFi credentials
-// const char *ssid = "SCRC_LAB_IOT";
-// const char *password = "Scrciiith@123";
 
 // const char *ssid = "IIIT-Guest";
 // const char *password = "I%GR#*S@!";
 
 const char *ssid = "esw-m19@iiith";
 const char *password = "e5W-eMai@3!20hOct";
-
-// const char *ssid = "Test";
-// const char *password = "123456789";
 
 // space required by the packages recieved
 
@@ -98,9 +94,6 @@ void data_recieve(AsyncWebServerRequest *request, unsigned char *data, size_t le
 
   data_status = true;
   interrupt_enable = true;
-  //char *c = const_cast<char *>(conv_data.c_str());
-  // action(c);
-  // send back a response!
   request->send(200, "text/plain", stri);
 }
 
@@ -206,11 +199,8 @@ void setup() {
   display.setCursor(0, 0);
   display.print(WiFi.localIP());
   sendGET(verticals[curr_vertical++]);
-  // updateAQ();
-  // sendGET("aq");
   delay(2000);
   display.clearDisplay();
-  // m_updateData("CO2","NH3",10.2,0.885,"mg/l","ug/l");
   int index = 0;
   m_updateData(data_params[index], data_params[index + 1], data_values[index], data_values[index + 1], units[index], units[index + 1]);
   index++;
@@ -235,11 +225,9 @@ void loop() {
       display.setTextWrap(true);
       data_start = true;
       sound_buzzer(5, 350);
-      // m_show_text(data_string);
       display.fillRect(0, 10, 64, 45, display.color565(0, 0, 0));
       display.setTextSize(2);
       scroll_text(matrix_height / 2 - 5, 50, data_string, 96, 96, 250);
-      // scroll_text()
       display.setTextSize(1);
       delay(700);
     }
@@ -256,5 +244,4 @@ void loop() {
   
   sendGET(verticals[curr_vertical]);
   curr_vertical++;
-  // sendGET(verticals[0]);
 }
